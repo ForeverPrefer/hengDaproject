@@ -1,0 +1,439 @@
+{% extends "base.html" %}
+{% load static %}
+{% load highlight %}
+
+{% block title %}新闻搜索 - 恒达科技{% endblock %}
+
+{% block extra_css %}
+<style>
+.search-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 0;
+    margin-bottom: 30px;
+    border-radius: 0 0 20px 20px;
+}
+
+.search-form-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.search-input-group {
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.search-input {
+    border: none;
+    padding: 15px 25px;
+    font-size: 16px;
+    border-radius: 50px 0 0 50px;
+}
+
+.search-input:focus {
+    box-shadow: none;
+    border-color: #667eea;
+}
+
+.search-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 0 50px 50px 0;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.results-stats {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #667eea;
+}
+
+.news-card {
+    background: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.news-card-body {
+    padding: 25px;
+}
+
+.news-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.news-title a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.news-title a:hover {
+    color: #667eea;
+}
+
+.news-meta {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.news-meta i {
+    margin-right: 5px;
+}
+
+.news-excerpt {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.highlight {
+    background-color: #fff3cd;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+    color: #e74c3c;
+}
+
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.no-results-icon {
+    font-size: 4rem;
+    color: #bdc3c7;
+    margin-bottom: 20px;
+}
+
+.no-results h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.no-results p {
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.search-suggestions {
+    background: #e8f4fd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.search-suggestions h6 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.suggestion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.suggestion-tag {
+    background: white;
+    border: 1px solid #3498db;
+    color: #3498db;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.suggestion-tag:hover {
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 10px;
+}
+
+.pagination a, .pagination span {
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.pagination a {
+    color: #667eea;
+    background: white;
+}
+
+.pagination a:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.pagination .current {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.search-prompt {
+    text-align: center;
+    padding: 80px 20px;
+    color: #7f8c8d;
+}
+
+.search-prompt .icon {
+    font-size: 4rem;
+    color: #bdc3c7;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        padding: 20px 0;
+    }
+    
+    .search-form-card {
+        padding: 20px;
+        margin: 0 10px;
+    }
+    
+    .search-input {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+    
+    .search-btn {
+        padding: 12px 20px;
+    }
+    
+    .news-card-body {
+        padding: 20px;
+    }
+    
+    .news-title {
+        font-size: 1.1rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 搜索头部 -->
+<div class="search-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="search-form-card">
+                    <h2 class="text-center mb-4" style="color: #2c3e50; font-weight: 700;">新闻搜索</h2>
+                    <form method="get" action="{% url 'haystack_search' %}">
+                        <div class="input-group search-input-group">
+                            <input type="text" name="q" class="form-control search-input" 
+                                   value="{{ query }}" placeholder="请输入新闻关键词，如：人工智能、金融科技、供应链..." required>
+                            <span class="input-group-btn">
+                                <button class="btn search-btn" type="submit">
+                                    <i class="fas fa-search"></i> 搜索
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- 搜索结果统计 -->
+    {% if query %}
+    <div class="results-stats">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h5 class="mb-0" style="color: #2c3e50;">
+                    <i class="fas fa-search me-2"></i>
+                    搜索 "<span style="color: #e74c3c;">{{ query }}</span>" 
+                    {% if page.object_list %}
+                        找到 {{ page.object_list|length }} 条结果
+                    {% else %}
+                        没有找到相关新闻
+                    {% endif %}
+                </h5>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <small class="text-muted">共 {{ page.paginator.count }} 条记录</small>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 搜索结果列表 -->
+    <div class="row">
+        <div class="col-12">
+            {% if query %}
+                {% if page.object_list %}
+                    {% for result in page.object_list %}
+                    <div class="news-card">
+                        <div class="news-card-body">
+                            <h3 class="news-title">
+                                <a href="{% url 'newsApp:newDetail' result.object.id %}">
+                                    {% highlight result.object.title with query %}
+                                </a>
+                            </h3>
+                            <div class="news-meta">
+                                <span>
+                                    <i class="far fa-calendar"></i>
+                                    {{ result.object.publishDate|date:"Y年m月d日" }}
+                                </span>
+                                <span>
+                                    <i class="far fa-folder"></i>
+                                    {{ result.object.newType }}
+                                </span>
+                                {% if result.object.views %}
+                                <span>
+                                    <i class="far fa-eye"></i>
+                                    {{ result.object.views }} 阅读
+                                </span>
+                                {% endif %}
+                            </div>
+                            <p class="news-excerpt">
+                                {% highlight result.object.description with query html_tag "span" css_class "highlight" %}
+                            </p>
+                            <a href="{% url 'newsApp:newDetail' result.object.id %}" class="btn btn-outline-primary btn-sm mt-2">
+                                阅读全文 <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- 无结果提示 -->
+                    <div class="no-results">
+                        <div class="no-results-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>没有找到相关新闻</h4>
+                        <p>抱歉，没有找到与 "<strong>{{ query }}</strong>" 相关的新闻</p>
+                        <p class="mb-4">建议您尝试其他关键词或检查拼写</p>
+                        
+                        <!-- 搜索建议 -->
+                        <div class="search-suggestions">
+                            <h6>试试搜索这些热门关键词：</h6>
+                            <div class="suggestion-tags">
+                                <a href="?q=人工智能" class="suggestion-tag">人工智能</a>
+                                <a href="?q=金融科技" class="suggestion-tag">金融科技</a>
+                                <a href="?q=供应链" class="suggestion-tag">供应链</a>
+                                <a href="?q=计算机" class="suggestion-tag">计算机</a>
+                                <a href="?q=企业要闻" class="suggestion-tag">企业要闻</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <!-- 初始状态 -->
+                <div class="search-prompt">
+                    <div class="icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>新闻搜索</h3>
+                    <p class="lead">请输入关键词搜索您感兴趣的新闻内容</p>
+                    
+                    <!-- 热门搜索标签 -->
+                    <div class="search-suggestions mt-4" style="max-width: 500px; margin: 0 auto;">
+                        <h6>热门搜索：</h6>
+                        <div class="suggestion-tags justify-content-center">
+                            <a href="?q=人工智能" class="suggestion-tag">人工智能</a>
+                            <a href="?q=金融科技" class="suggestion-tag">金融科技</a>
+                            <a href="?q=供应链金融" class="suggestion-tag">供应链金融</a>
+                            <a href="?q=计算机经济" class="suggestion-tag">计算机经济</a>
+                            <a href="?q=产学合作" class="suggestion-tag">产学合作</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- 分页 -->
+    {% if page.has_previous or page.has_next %}
+    <div class="pagination">
+        {% if page.has_previous %}
+            <a href="?q={{ query }}&page={{ page.previous_page_number }}" class="prev">
+                <i class="fas fa-chevron-left me-1"></i>上一页
+            </a>
+        {% endif %}
+        
+        <span class="current">
+            第 {{ page.number }} 页，共 {{ page.paginator.num_pages }} 页
+        </span>
+        
+        {% if page.has_next %}
+            <a href="?q={{ query }}&page={{ page.next_page_number }}" class="next">
+                下一页 <i class="fas fa-chevron-right ms-1"></i>
+            </a>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// 添加一些交互效果
+document.addEventListener('DOMContentLoaded', function() {
+    // 自动聚焦搜索框
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput && !searchInput.value) {
+        searchInput.focus();
+    }
+    
+    // 添加输入框动态效果
+    searchInput.addEventListener('focus', function() {
+        this.parentElement.style.boxShadow = '0 8px 25px rgba(102, 126, 234, 0.3)';
+    });
+    
+    searchInput.addEventListener('blur', function() {
+        this.parentElement.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+    });
+});
+</script>
+{% endblock %}

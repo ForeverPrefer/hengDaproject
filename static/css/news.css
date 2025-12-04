@@ -1,0 +1,188 @@
+/* 搜索结果标题样式 */
+.search-result-title {
+    text-align: center; /* 标题居中 */
+    margin: 20px 0; /* 上下间距 */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee; /* 下划线分隔 */
+}
+.search-result-title h3 {
+    color: #333;
+    font-size: 20px;
+    margin: 0; /* 清除默认边距 */
+}
+
+/* 无结果提示样式 */
+.no-result {
+    text-align: center;
+    padding: 50px 0;
+    color: #666;
+    font-size: 16px;
+}
+
+/* 分页控件样式 */
+.paging {
+    text-align: center;
+    margin: 30px 0; /* 增加上下间距 */
+}
+.pagination .active a {
+    background-color: #005197;
+    border-color: #005197;
+    color: white; /* 激活页文字白色 */
+}
+.pagination li a {
+    color: #666; /* 分页文字颜色 */
+}
+.pagination li a:hover {
+    color: #005197; /* hover颜色 */
+}
+
+/* 新闻列表样式 */
+.model-details {
+    padding: 0 15px; /* 左右内边距，避免贴边 */
+}
+.news-model {
+    margin-top: 15px;
+    padding: 10px 0; /* 上下内边距 */
+    border-bottom: 1px dashed #eee; /* 分隔线 */
+    word-wrap: break-word; /* 自动换行 */
+    overflow: hidden; /* 清除浮动 */
+}
+.news-model img {
+    vertical-align: middle; /* 图标与文字对齐 */
+    margin-right: 8px; /* 图标与标题间距 */
+}
+.news-model span {
+    float: right;
+    color: #999;
+    font-size: 14px;
+    padding-left: 10px; /* 与标题保持距离 */
+}
+.news-model a {
+    color: #666;
+    font-size: 16px;
+    display: inline-block;
+    max-width: 80%; /* 限制标题宽度，避免与日期重叠 */
+    vertical-align: middle;
+    white-space: normal; /* 强制换行 */
+}
+.news-model a:hover, .news-model a:focus {
+    text-decoration: none;
+    color: #01a1e6;
+}
+.news-model p {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #888; /* 摘要文字颜色 */
+    line-height: 1.6; /* 行高优化 */
+}
+
+/* 新闻主体标题栏 */
+.model-details-product-title {
+    padding: 15px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #005197;
+    color: #005197;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* 新闻主体副标题栏 */
+.model-foot {
+    padding: 5px 0;
+    font-size: 14px;
+    color: #543535;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* 搜索框样式 */
+.model-details-title-search {
+    font-size: 18px;
+    float: right;
+    width: 400px;
+    margin-bottom: 20px;
+}
+/* 适配小屏幕 */
+@media (max-width: 768px) {
+    .model-details-title-search {
+        width: 100%; /* 小屏幕搜索框占满宽度 */
+        float: none;
+    }
+    .news-model a {
+        max-width: 70%; /* 小屏幕调整标题宽度 */
+    }
+}
+
+.news-search-model span{
+    float:none;
+}
+.news-model a span{
+    float: none;
+}
+.highlighted {
+    color: red;
+}
+
+/* 搜索高亮样式 */
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+    padding: 2px 4px;
+}
+
+.news-search-model {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    margin-bottom: 15px;
+}
+
+.news-search-model h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.news-search-model h3 a {
+    color: #333;
+    text-decoration: none;
+}
+
+.news-search-model h3 a:hover {
+    color: #007bff;
+}
+
+.text-muted {
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.no-results, .search-prompt {
+    text-align: center;
+    padding: 40px 0;
+    color: #6c757d;
+}
+
+.pagination {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #007bff;
+}
+
+.pagination a:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination .current {
+    padding: 8px 16px;
+    margin: 0 5px;
+    color: #6c757d;
+}

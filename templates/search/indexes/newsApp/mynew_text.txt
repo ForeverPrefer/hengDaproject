@@ -1,0 +1,2 @@
+{{ object.title }}  # 索引新闻标题
+{{ object.description }}  # 索引新闻描述

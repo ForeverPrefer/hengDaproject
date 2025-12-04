@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+人才招聘
+{% endblock %}
+
+{% block content %}
+<link href="{% static 'css/contact.css' %}" rel="stylesheet">
+<div class="container-fluid">  
+    <div class="row">
+        <img class="img-responsive medol-img" src="{% static 'img/rc.jpg' %}" style="width: 100%;">
+    </div>
+</div>
+
+<div class="container">  
+    <div class="row"> 
+        <div class="col-sm-12 col-md-3">  
+            <div class="model-title">
+                人才招聘
+            </div>
+            <div class="model-list">
+                <ul class="list-group">
+                    <li class="list-group-item" id="contact">
+                        <a href="{% url 'contactApp:contact' %}">欢迎咨询</a>
+                    </li>
+                    <li class="list-group-item" id="recruit">
+                        <a href="{% url 'contactApp:recruit' %}">加入恒达</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-9">  
+            <div class="model-details-title">
+                欢迎咨询
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="contact-left">
+                        <h1>
+                            <strong>恒达科技有限公司</strong>
+                            <span>Hengda Science and Technology</span>
+                        </h1>
+                        <ul>
+                            <li><span>业务质询一：</span>111-111111</li>
+                            <li><span>业务质询二：</span>222-222222</li>
+                            <li><span>咨询电话：</span>0123-333333</li>
+                            <li><span>企业传真：</span>0222-444444</li>
+                            <li><span>邮箱：</span>某某@某某某.com</li>
+                            <li><span>地址：</span>222-222222</li>
+                            <li><span>网址：</span>
+                                <a href="http://pythonweb.com">http://pythonweb.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 新增：地图容器，放在联系信息右侧 -->
+                <div class="col-md-8">
+                    <div style="width:500px;height:400px;border:#ccc solid 1px;" id="dituContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 引用百度地图API -->
+<style type="text/css">
+    .iw_poi_title {
+        color: #CC5522;
+        font-size: 14px;
+        font-weight: bold;
+        overflow: hidden;
+        padding-right: 13px;
+        white-space: nowrap
+    }
+    .iw_poi_content {
+        font: 12px arial, sans-serif;
+        overflow: visible;
+        padding-top: 4px;
+        padding-right: 4px;
+        white-space: -moz-pre-wrap;
+        word-wrap: break-word
+    }
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=d7w8lYy5c8mIryaRXPtNGMqPHTYIk7VK"></script>
+
+<script type="text/javascript">
+    var map = new BMap.Map("dituContent");
+    var point = new BMap.Point(106.073219, 30.823995);
+    map.centerAndZoom(point, 15);
+    map.enableScrollWheelZoom();
+</script>
+
+{% endblock %}

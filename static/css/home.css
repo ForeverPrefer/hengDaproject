@@ -1,0 +1,111 @@
+.part1{
+    font-size:22px;
+}
+.part1 a{
+    text-decoration:none;
+    color:#666;
+}
+.en{
+    color:#828d82;
+    font-size:15px;
+}
+.line1{
+    height:3px;
+    background:#000000;
+    width:100%;
+    margin-bottom:0px
+}
+.line2{
+    height:3px;
+    background: #005197;
+    width:94px;
+}
+.text1{
+    text-align:justify;
+    font-size:13px;
+    line-height:25px;
+    color:#505050;
+    margin-top:5px;
+}
+
+.carousel {
+    margin-bottom: 40px;
+}
+.carousel-inner .item {
+    background-color: #200;
+}
+.carousel .nav-points {
+    bottom: -14px;
+}
+.carousel-caption {
+    font-size: 12px;
+    bottom: -14px;
+}
+.carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 20px;
+    line-height: 1.8;
+}
+.more-btn {
+    float: right;
+    margin-top: 7px;
+    color: #828d82;
+    font-size: 12px;
+}
+.list-new li {
+    border-bottom: 1px dashed #eae0e0;
+    line-height: 40px;
+}
+.list-new a {
+    text-decoration: none;
+    color: #666;
+    font-size: 13px;
+}
+.list-new a:hover {
+    color: #d4d0dc;
+}
+.list-new span {
+    float: right;
+    font-size: 12px;
+}
+.list-new-public-detail {
+    float: right;
+    color: #d4d0dc;
+}
+
+.procurement-li {
+    line-height:35px;
+    color: #666;
+    font-size:13px;
+}
+.procurement-li a {
+    text-decoration:none;
+    color: #666;
+}
+.platform{
+    width:100%;
+    height:45px;
+    background:#eae7e7;
+    color:#fff;
+    text-align:center;
+    font-size:17px;
+    line-height:42px;
+}
+.platform a {
+    text-decoration:none;
+    color: #666;
+}
+.platform a:hover{
+    color: #d30a1c;
+}
+
+.pro-images{
+  background-color: #F6F6F6;
+}
+.thumbnail{
+  margin-bottom:0px;
+}
+.col-pro{
+  background-color: #F6F6F6;
+  padding-top:15px;
+}
